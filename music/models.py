@@ -19,7 +19,16 @@ class Genre(models.Model):
     def __str__(self):
         return self.genre
 
+class Album(models.Model):
+    name = models.CharField(max_length=100)
+    artiste = models.CharField(max_length=100)
+    year = models.DateField(auto_now=True)
+
 class Music(models.Model):
+    album = models.ForeignKey(Album, related_name='album', on_delete=models.CASCADE)
     title = models.CharField(max_length=90)
     artiste = models.CharField(max_length=90)
-    # cover_photo = 
+    cover_photo = models.ImageField(upload_to = 'covers/')
+    
+    def __str__(self):
+        return (self.title + self.artiste)

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-q@_$@r-v)m^_byz4a-_*+d-i27l%$otl_#6tdhp9yca8t8bn7+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     
     # 3rd party apps
     'rest_framework',
+    # 'audiofield',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+## Audiofield settings
+
+# FRONTEND WIDGET VALUES: 0 = Original, 1 = Mono, 2 = Stereo
+# CHANNEL_TYPE_VALUE = 0
+
+# FREQ VALUE: 8000-8000Hz, 16000-16000Hz
+# FREQ_TYPE_VALUE = 8000
+
+# FORMAT TYPE VALUES: 0 = Original, 1 = Convert to Mp3, 2 = Convert to WAV, 3 = Convert to OGG
+# CONVERT_TYPE_VALUES = 1

@@ -1,4 +1,6 @@
 from django.db import models
+# from audiofield.fields import AudioField
+from django.conf import settings
 
 # Create your models here.
 
@@ -22,13 +24,20 @@ class Genre(models.Model):
 class Album(models.Model):
     name = models.CharField(max_length=100)
     artiste = models.CharField(max_length=100)
-    year = models.DateField(auto_now=True)
+    year = models.DateField(auto_now_add=False)
     cover_photo = models.ImageField(upload_to = 'covers/')
+    
+    def __str__(self):
+        return(self.name + " " + str(self.year) + " " + self.artiste)
 
 class Music(models.Model):
     album = models.ForeignKey(Album, related_name='album', on_delete=models.CASCADE)
     title = models.CharField(max_length=90)
     artiste = models.CharField(max_length=90)
+    audio_file = models.FileField(upload_to = 'audio/')
+    
+    class Meta:
+        verbose_name_plural = "Music"
     
     def __str__(self):
-        return (self.title + self.artiste)
+        return (self.title + " - " + self.artiste)

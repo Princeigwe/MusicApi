@@ -7,14 +7,14 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = ('genre',)
 
-
-class AlbumSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Album
-        fields = ('name', 'artiste', 'year', 'cover_photo',)
-
 class MusicSerializer(serializers.ModelSerializer):
-    album = AlbumSerializer()
     class Meta:
         model = Music
-        fields = ('album', 'title', 'artiste', 'audio_file',)
+        fields = ('id', 'title', 'artiste', 'audio_file',)
+
+class AlbumSerializer(serializers.ModelSerializer):
+    music = MusicSerializer(many=True, read_only=True)
+    class Meta:
+        model = Album
+        fields = ('id', 'name', 'artiste', 'year', 'cover_photo', 'music',)
+    

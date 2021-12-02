@@ -9,6 +9,13 @@ psycopg2-binary = "==2.9.2"
 djangorestframework = "*"
 pillow = "*"
 django-audiofield = "*"
+djoser = "*"
+social-auth-app-django = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
+pyyaml = "*"
+django-rest-swagger = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

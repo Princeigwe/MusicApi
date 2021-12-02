@@ -40,12 +40,33 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # local apps
+    'accounts.apps.AccountsConfig',
     'music.apps.MusicConfig',
     
     # 3rd party apps
     'rest_framework',
-    # 'audiofield',
+    # 'rest_framework.authtoken',
+    'djoser',
+    "corsheaders",
+    'drf_yasg'
+    # 'drf_yasg',
+
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'musicApi.wsgi.application'
 
-
+AUTH_USER_MODEL = "accounts.CustomUser"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -146,13 +167,27 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-## Audiofield settings
+#  djoser settings
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {
+        'user_create': 'djoser.serializers.UserCreateSerializer',
+        'user': 'djoser.serializers.UserSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
+}
 
-# FRONTEND WIDGET VALUES: 0 = Original, 1 = Mono, 2 = Stereo
-# CHANNEL_TYPE_VALUE = 0
+# CORS HEADERS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
-# FREQ VALUE: 8000-8000Hz, 16000-16000Hz
-# FREQ_TYPE_VALUE = 8000
-
-# FORMAT TYPE VALUES: 0 = Original, 1 = Convert to Mp3, 2 = Convert to WAV, 3 = Convert to OGG
-# CONVERT_TYPE_VALUES = 1
+# EMAIL CONFIG
+EMAIL_BACKEND = "django.core.mail.console.smtp.EmailBackend"
+EMAIL_HOST = "localhost"
+EMAIL_PORT = "1025"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_USE_TLS = False

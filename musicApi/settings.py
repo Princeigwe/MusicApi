@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     
     # 3rd party apps
     'rest_framework',
+    'rest_framework_simplejwt', # Jwt authentication library
     # 'rest_framework.authtoken',
     'djoser',
     "corsheaders",
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -172,7 +174,7 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'djoser.serializers.UserCreateSerializer',
         'user': 'djoser.serializers.UserSerializer',
@@ -180,12 +182,17 @@ DJOSER = {
     },
 }
 
+SIMPLE_JWT = {
+'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+
 # CORS HEADERS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 # EMAIL CONFIG
-EMAIL_BACKEND = "django.core.mail.console.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = "localhost"
 EMAIL_PORT = "1025"
 EMAIL_HOST_USER = ""

@@ -16,3 +16,13 @@ class UserPlaylistSong(models.Model):
     
     def __str__(self):
         return self.music.title
+
+class UserFavourites(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user')
+    music = models.ForeignKey(Music, on_delete=models.CASCADE, related_name='music')
+    
+    class Meta:
+        verbose_name_plural = "User Favourites"
+    
+    def __str__(self):
+        return self.music.title

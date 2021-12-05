@@ -4,9 +4,8 @@ from .models import Genre, Album, Music
 # Register your models here.
 
 class GenreAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Genre
-        list_display = ['genre']
+    model = Genre
+    list_display = ['genre']
 
 class AlbumAdmin(admin.ModelAdmin):
     class Meta:
@@ -14,9 +13,8 @@ class AlbumAdmin(admin.ModelAdmin):
         list_display = ['name', 'artiste', 'year', 'cover']
 
 class MusicAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Music
-        list_display = ['album', 'title', 'artiste', 'audio_file']
+    model = Music
+    list_display = ['album', 'title', 'artiste', 'audio_file']
 
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Album, AlbumAdmin)

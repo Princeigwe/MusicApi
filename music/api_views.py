@@ -7,15 +7,18 @@ from rest_framework import permissions
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    filterset_fields = ['genre'] #setting query key for endpoint
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 # viewset for AlbumSerializer
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+    filterset_fields = ['name', 'artiste'] #setting query key for endpoint
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 # viewset for MusicSerializer
 class MusicViewSet(viewsets.ModelViewSet):
     queryset = Music.objects.all()
     serializer_class = MusicSerializer
+    filterset_fields = ['title'] #setting query key for endpoint
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

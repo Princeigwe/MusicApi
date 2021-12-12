@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts.apps.AccountsConfig',
     'music.apps.MusicConfig',
-    'playlist.apps.PlaylistConfig',
+    'user_playlists.apps.UserPlaylistsConfig',
     
     # 3rd party apps
     'rest_framework',
@@ -69,6 +69,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),

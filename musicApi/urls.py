@@ -41,6 +41,9 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
+    path('api/v1/user-playlists/', include('user_playlists.urls')),
+    
+    # 3RD PARTY APPS URLS
     # path('api/auth/', include('djoser.urls.authtoken')),
     path('api/auth/', include('djoser.urls.jwt')),
     # path("api/auth/", include("accounts.urls")),

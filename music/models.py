@@ -22,8 +22,8 @@ class Genre(models.Model):
         return self.genre
 
 class Album(models.Model):
-    name = models.CharField(max_length=100)
-    artiste = models.CharField(max_length=100)
+    name = models.CharField(max_length=300)
+    artiste = models.CharField(max_length=300)
     year = models.DateField(auto_now_add=False)
     cover_photo = models.ImageField(upload_to = 'covers/')
     
@@ -32,8 +32,8 @@ class Album(models.Model):
 
 class Music(models.Model):
     album = models.ForeignKey(Album, related_name='music', on_delete=models.CASCADE)
-    title = models.CharField(max_length=90)
-    artiste = models.CharField(max_length=90)
+    title = models.CharField(max_length=500)
+    artiste = models.CharField(max_length=500)
     audio_file = models.FileField(upload_to = 'audio/')
     
     class Meta:

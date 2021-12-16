@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'drf_yasg',
     'django_filters',
+    # 'drf_writable_nested',
     # 'drf_yasg',
 
 ]
@@ -67,7 +68,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FileUploadParser',
+    ],
 }
 
 

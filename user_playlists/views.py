@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics, serializers
+from rest_framework import parsers
 from .models import UserPlaylist, UserPlaylistSong
 from .serializers import UserPlayListSerializer, UserPlayListSongSerializer
 from .permissions import PlaylistOwnerOrAdmin, PlaylistSongOwnerOrAdmin
+from rest_framework.parsers import MultiPartParser, FileUploadParser
 
 # Create your views here.
 
@@ -19,6 +21,8 @@ class RetrieveOrDeleteUserPlaylistAPIView(generics.RetrieveDestroyAPIView):
 class ListOrCreateUserPlaylistSongAPIView(generics.ListCreateAPIView):
     queryset = UserPlaylistSong.objects.all()
     serializer_class = UserPlayListSongSerializer
+    parser_classes = [MultiPartParser]
+
 
 class RetrieveOrDeleteUserPlaylistSongAPIView(generics.RetrieveDestroyAPIView):
     queryset = UserPlaylistSong.objects.all()

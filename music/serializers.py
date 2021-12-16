@@ -8,6 +8,10 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ('genre',)
 
 class MusicSerializer(serializers.ModelSerializer):
+    # audio_file = serializers.SlugField(min_length=None)
+    title = serializers.CharField()
+    artiste = serializers.CharField()
+    audio_file = serializers.FileField(read_only=True)
     class Meta:
         model = Music
         fields = ('id', 'title', 'artiste', 'audio_file',)

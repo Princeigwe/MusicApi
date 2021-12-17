@@ -8,7 +8,7 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 class UserPlayListSongSerializer(WritableNestedModelSerializer):
-    music = MusicSerializer()
+    # music = MusicSerializer()
     class Meta:
         model = UserPlaylistSong
         fields = ('id', 'user_playlist', 'music',)

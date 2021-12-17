@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts.apps.AccountsConfig',
     'music.apps.MusicConfig',
-    'playlist.apps.PlaylistConfig',
+    'user_playlists.apps.UserPlaylistsConfig',
     
     # 3rd party apps
     'rest_framework',
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'drf_yasg',
     'django_filters',
+    # 'drf_writable_nested',
     # 'drf_yasg',
 
 ]
@@ -67,8 +68,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FileUploadParser',
+    ],
 }
+
+
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),

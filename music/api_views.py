@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from .serializers import GenreSerializer, AlbumSerializer, MusicSerializer
 from .models import Genre, Album, Music
 from rest_framework import permissions
+# from rest_framework.parsers import MultiPartParser
 
 # viewset for GenreSerializer
 class GenreViewSet(viewsets.ModelViewSet):

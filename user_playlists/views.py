@@ -4,7 +4,7 @@ from rest_framework import parsers
 from .models import UserPlaylist, UserPlaylistSong
 from .serializers import UserPlayListSerializer, UserPlayListSongSerializer
 from .permissions import PlaylistOwnerOrAdmin, PlaylistSongOwnerOrAdmin
-from rest_framework.parsers import MultiPartParser, FileUploadParser
+from rest_framework.parsers import MultiPartParser, JSONParser, FileUploadParser
 
 # Create your views here.
 
@@ -21,8 +21,8 @@ class RetrieveOrDeleteUserPlaylistAPIView(generics.RetrieveDestroyAPIView):
 class ListOrCreateUserPlaylistSongAPIView(generics.ListCreateAPIView):
     queryset = UserPlaylistSong.objects.all()
     serializer_class = UserPlayListSongSerializer
-    parser_classes = [MultiPartParser]
-
+    parser_classes = [MultiPartParser, FileUploadParser]
+    permission_classes = [PlaylistSongOwnerOrAdmin]
 
 class RetrieveOrDeleteUserPlaylistSongAPIView(generics.RetrieveDestroyAPIView):
     queryset = UserPlaylistSong.objects.all()

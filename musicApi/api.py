@@ -7,6 +7,6 @@ router = routers.SimpleRouter()
 
 router.register('genres', GenreViewSet)
 router.register('albums', AlbumViewSet)
-router.register('music', MusicViewSet)
+# router.register('music', MusicViewSet)
 # router.register('user-playlist', UserPlaylistViewset)
 # router.register('user-playlist-song', UserPlaylistSongViewset)

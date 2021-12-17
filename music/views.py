@@ -13,3 +13,4 @@ class ListOrCreateMusicAPIView(generics.ListCreateAPIView):
 class RetrieveOrDeleteMusicAPIView(generics.RetrieveDestroyAPIView):
     queryset = Music.objects.all()
     serializer_class = MusicSerializer
+

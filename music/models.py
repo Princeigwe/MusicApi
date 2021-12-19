@@ -13,6 +13,7 @@ GENRES_CHOICES = (
     ('HOUSE MUSIC', 'House Music'),
     ('TRAP MUSIC', 'Trap Music'),
     ('JAZZ', 'Jazz'),
+    ('R&B', 'R&B'),
 )
 
 class Genre(models.Model):
@@ -33,6 +34,7 @@ class Album(models.Model):
 class Music(models.Model):
     album = models.ForeignKey(Album, related_name='music', on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
+    genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, related_name='genre_music')
     artiste = models.CharField(max_length=500)
     audio_file = models.FileField(upload_to = 'audio/')
     

@@ -14,7 +14,7 @@ class AlbumAdmin(admin.ModelAdmin):
 
 class MusicAdmin(admin.ModelAdmin):
     model = Music
-    list_display = ['album', 'title', 'artiste', 'audio_file']
+    list_display = ['album', 'title', 'genre', 'artiste', 'audio_file']
 
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Album, AlbumAdmin)

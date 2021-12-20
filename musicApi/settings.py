@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'user_playlists.apps.UserPlaylistsConfig',
     
     # 3rd party apps
+    'storages',
     'rest_framework',
     'rest_framework_simplejwt', # Jwt authentication library
     # 'rest_framework.authtoken',
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     # 'drf_writable_nested',
-    # 'drf_yasg',
 
 ]
 
@@ -211,3 +211,7 @@ EMAIL_PORT = "1025"
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = False
+
+## DROPBOX STORAGE SETTINGS
+# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+

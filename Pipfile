@@ -18,6 +18,7 @@ django-rest-swagger = "*"
 django-cors-headers = "*"
 drf-writable-nested = "*"
 django-filter = "*"
+django-storages = {extras = ["dropbox"], version = "*"}
 
 [dev-packages]
 

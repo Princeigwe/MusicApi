@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default=0)
 
-ALLOWED_HOSTS = ['0.0.0.0', '.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'music-api-app.herokuapp.com']
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 

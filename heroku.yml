@@ -1,6 +1,8 @@
 # specifying the addons that will be needed
 setup:
-  
+  addons:
+    - plan: heroku-postgresql
+
 
 # building the Dockerfile
 build:

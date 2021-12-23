@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from datetime import timedelta
+import dj_database_url # importing Heroku database
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', default=0)
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '.herokuapp.com']
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 
 # Application definition
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # 'whitenoise.runserver_nostatic', # whitenoise for serving static files
     'django.contrib.staticfiles',
     
     # local apps
@@ -77,13 +81,9 @@ REST_FRAMEWORK = {
 }
 
 
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-}
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise middleware for serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -134,6 +134,10 @@ DATABASES = {
     }
 }
 
+## Database setting for heroku
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -172,6 +176,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] # directory of the static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # directory for static files for production environment
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -196,7 +202,9 @@ DJOSER = {
 }
 
 SIMPLE_JWT = {
-'AUTH_HEADER_TYPES': ('JWT',),
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), # setting access token expiration time
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
 }
 
 
@@ -215,3 +223,18 @@ EMAIL_USE_TLS = False
 ## DROPBOX STORAGE SETTINGS
 # DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN= os.environ.get('DROPBOX_ACCESS_TOKEN')
+
+## production setting
+if ENVIRONMENT == 'production':
+    SECURE_BROWSER_XSS_FILTER = True ## PROTECTS FROM CROSS SITE SCRIPTING ATTACK
+    X_FRAME_OPTIONS='DENY' # SECURES FROM CLICKJACKING ATTACK
+    SECURE_SSL_REDIRECT=True ## HTTPS security
+    SECURE_HSTS_SECONDS = 3600 
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True 
+    SECURE_HSTS_PRELOAD = True 
+    SECURE_CONTENT_TYPE_NOSNIFF = True 
+    SESSION_COOKIE_SECURE=True
+    CSRF_COOKIE_SECURE=True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') ## to prevent redirects

@@ -14,11 +14,12 @@ services:
   web:
     build: .
     container_name: "musicApi_web"
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    # command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn musicApi.wsgi
     environment:
-      - ENVIRONMENT=development
+      - ENVIRONMENT=production
       - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=1
+      - DEBUG=0
       - DROPBOX_ACCESS_TOKEN=${DROPBOX_ACCESS_TOKEN}
       - DROPBOX_CONSUMER_KEY=${DROPBOX_CONSUMER_KEY}
       - DROPBOX_CONSUMER_SECRET=${DROPBOX_CONSUMER_SECRET}

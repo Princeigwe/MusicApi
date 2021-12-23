@@ -19,6 +19,9 @@ django-cors-headers = "*"
 drf-writable-nested = "*"
 django-filter = "*"
 django-storages = {extras = ["dropbox"], version = "*"}
+whitenoise = "*"
+gunicorn = "*"
+dj-database-url = "*"
 
 [dev-packages]
 

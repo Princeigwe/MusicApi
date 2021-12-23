@@ -39,7 +39,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('the-admin-area/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api/v1/music/', include('music.urls')),
     path('api/v1/user-playlists/', include('user_playlists.urls')),

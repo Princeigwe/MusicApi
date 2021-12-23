@@ -12,6 +12,9 @@ build:
 # running task before each release
 release:
   image: web # running the web service in the docker-compose file on release
+  command:
+    - python manage.py collectstatic --noinput
+
 
 run:
   web: gunicorn musicApi.wsgi # running gunicorn for the application

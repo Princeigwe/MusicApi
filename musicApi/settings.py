@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'whitenoise.runserver_nostatic', # whitenoise for serving static files
+    'whitenoise.runserver_nostatic', # whitenoise for serving static files
     'django.contrib.staticfiles',
     
     # local apps
@@ -83,7 +83,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise middleware for serving static files
+    'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise middleware for serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',

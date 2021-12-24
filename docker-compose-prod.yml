@@ -15,7 +15,7 @@ services:
     build: .
     container_name: "musicApi_web"
     # command: python /code/manage.py runserver 0.0.0.0:8000
-    command: gunicorn musicApi.wsgi
+    command: gunicorn --workers 5 --threads 2 musicApi.wsgi
     environment:
       - ENVIRONMENT=production
       - SECRET_KEY=${SECRET_KEY}

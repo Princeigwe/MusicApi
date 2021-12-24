@@ -17,4 +17,4 @@ release:
 
 
 run:
-  web: gunicorn musicApi.wsgi # running gunicorn for the application
+  web: gunicorn --workers = 5 --threads = 2 musicApi.wsgi # running gunicorn for the application

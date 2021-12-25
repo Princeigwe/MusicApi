@@ -22,6 +22,7 @@ django-storages = {extras = ["dropbox"], version = "*"}
 whitenoise = "*"
 gunicorn = "*"
 dj-database-url = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 

@@ -12,6 +12,7 @@ class GenreViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 # viewset for AlbumSerializer
 class AlbumViewSet(viewsets.ModelViewSet):
+    """ This lists all album resources in the API """
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
     filterset_fields = ['name', 'artiste'] #setting query key for endpoint

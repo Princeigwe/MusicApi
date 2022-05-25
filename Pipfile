@@ -24,6 +24,7 @@ gunicorn = "*"
 dj-database-url = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 markdown = "*"
+pyjwt = "*"
 
 [dev-packages]
 
